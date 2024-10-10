@@ -4,10 +4,8 @@ import os
 import fastapi
 from semantic_text_splitter import MarkdownSplitter
 from tokenizers import Tokenizer
-from fastapi.middleware.httpsredirect import HTTPSRedirectMiddleware
 
 app = fastapi.FastAPI()
-app.add_middleware(HTTPSRedirectMiddleware)
 
 # file_url = "https://egzfmwstzbapteywkqqq.supabase.co/storage/v1/object/public/techme_documents/181f9e334c-6ffa-4b31-80b2-9ac5028d9ffb.pdf"
 
