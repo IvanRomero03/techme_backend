@@ -4,6 +4,7 @@ import os
 import fastapi
 from semantic_text_splitter import MarkdownSplitter
 from tokenizers import Tokenizer
+from pydantic import BaseModel
 
 app = fastapi.FastAPI()
 
@@ -25,9 +26,13 @@ app = fastapi.FastAPI()
 # md_chunks
 
 
+class FileUrl(BaseModel):
+    file_url: str
+
+
 @app.post("/convert")
-async def convert_pdf_to_markdown(file_url: str):
-    response = requests.get(file_url)
+async def convert_pdf_to_markdown(file_url: FileUrl):
+    response = requests.get(file_url.file_url)
     file_buffer = response.content
 
     with open("file.pdf", "wb") as f:
